@@ -14,9 +14,9 @@ import {
 } from "lucide-react";
 
 const navItems = [
-    { name: "Home", path: "/", icon: Home },
-    { name: "About", path: "/about", icon: Info },
-    { name: "Features", path: "/features", icon: Sparkles },
+    // { name: "Home", path: "/", icon: Home },
+    // { name: "About", path: "/about", icon: Info },
+    // { name: "Features", path: "/features", icon: Sparkles },
 ];
 
 export default function Navbar() {
@@ -35,20 +35,13 @@ export default function Navbar() {
                     >
                         <motion.div
                             initial={{ rotate: -8 }}
-                            whileHover={{ rotate: 0, scale: 1.08 }}
+                            animate={{ rotate: 0, scale: 1.08 }}
                             transition={{ type: "spring", stiffness: 300, damping: 15 }}
                             className="text-2xl font-black bg-gradient-to-r from-violet-600 to-indigo-600 bg-clip-text text-transparent"
                         >
-                            MyApp
+                            Loan Project
                         </motion.div>
-                        <motion.span
-                            initial={{ opacity: 0, x: -10 }}
-                            animate={{ opacity: 0.7, x: 0 }}
-                            transition={{ delay: 0.3 }}
-                            className="text-xs font-medium tracking-widest uppercase text-muted-foreground/80"
-                        >
-                            2025
-                        </motion.span>
+
                     </Link>
 
                     {/* Desktop Navigation */}
@@ -86,7 +79,7 @@ export default function Navbar() {
                                 className="gap-1.5 text-muted-foreground hover:text-foreground"
                                 asChild
                             >
-                                <Link to="/login">
+                                <Link to="/signin">
                                     <LogIn className="h-4 w-4" />
                                     Sign in
                                 </Link>

@@ -3,14 +3,14 @@ import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
 import App from "./App";
-import { AppProvider } from "@/context/AppContext";
 import "./index.css";
+import { AppProvider } from "./context/AppContext";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <BrowserRouter>
     <AppProvider>
       <App />
-      <Toaster position="top-right" />
+      <Toaster position="top-center" />
     </AppProvider>
   </BrowserRouter>
 );

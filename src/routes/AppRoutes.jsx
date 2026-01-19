@@ -9,15 +9,17 @@ import UserLayout from "@/Admin/User/Layout/UserLayout";
 import UserDash from "@/Admin/User/Layout/UserDash";
 import SignIn from "@/Pages/SignIn";
 import SignUp from "@/Pages/SignUp";
+import GetUserDetailsInfo from "@/Pages/GetUserDetailsInfo";
 
 const AppRoutes = () => {
     return (
         <Routes>
             <Route element={<MainLayout />}>
-                <Route path="/" element={<Home />} />
+                <Route path="/" element={< SignIn />} />
                 <Route path="/about" element={<About />} />
                 <Route path="/signin" element={<SignIn />} />
                 <Route path="/signup" element={<SignUp />} />
+                <Route path="/provide_info/:email" element={<GetUserDetailsInfo />} />
             </Route>
 
             {/* admin routes */}
