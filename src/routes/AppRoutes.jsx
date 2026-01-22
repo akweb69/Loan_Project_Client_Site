@@ -10,6 +10,8 @@ import UserDash from "@/Admin/User/Layout/UserDash";
 import SignIn from "@/Pages/SignIn";
 import SignUp from "@/Pages/SignUp";
 import GetUserDetailsInfo from "@/Pages/GetUserDetailsInfo";
+import LoanCalculator from "@/Pages/LoanSelect";
+import RequestSucceessPage from "@/Pages/RequestSucceessPage";
 
 const AppRoutes = () => {
     return (
@@ -19,6 +21,8 @@ const AppRoutes = () => {
                 <Route path="/about" element={<About />} />
                 <Route path="/signin" element={<SignIn />} />
                 <Route path="/signup" element={<SignUp />} />
+                <Route path="/selectLoan" element={<LoanCalculator />} />
+                <Route path="/request_successfull" element={<RequestSucceessPage />} />
                 <Route path="/provide_info/:email" element={<GetUserDetailsInfo />} />
             </Route>
 

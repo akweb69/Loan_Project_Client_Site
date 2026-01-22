@@ -3,10 +3,11 @@ import { Images, Lightbulb, User, UserCircle, Users, X } from 'lucide-react';
 import axios from 'axios';
 import toast, { Toaster } from 'react-hot-toast';
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 
 export default function GetUserDetailsInfo() {
-    const base_url = 'https://api.example.com'; // Replace with your real API base URL
-    const imgbb_key = 'your_imgbb_key_here';     // ← Replace with actual ImgBB API key
+    const base_url = import.meta.env.VITE_BASE_URL;
+    const imgbb_key = import.meta.env.VITE_IMGBB_API_KEY;
 
     const [selectedStep, setSelectedStep] = useState(1);
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -181,6 +182,7 @@ export default function GetUserDetailsInfo() {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
     };
+    const navigate = useNavigate()
 
     const handleUpload = async () => {
         if (!validateStep3()) return;
@@ -213,7 +215,7 @@ export default function GetUserDetailsInfo() {
                 signature: signatureUrl,
             };
 
-            const response = await axios.post(`${base_url}/api/user-details`, finalData);
+            const response = await axios.post(`${base_url}/loanDetails`, finalData);
 
             toast.success('সফলভাবে জমা দেওয়া হয়েছে!', { id: loadingToast });
             console.log('Server response:', response.data);
@@ -243,7 +245,9 @@ export default function GetUserDetailsInfo() {
                 signatureImage: null,
             });
 
-            setSelectedStep(1);
+            // setSelectedStep(1);
+            navigate('/selectLoan');
+
         } catch (error) {
             console.error('Submission error:', error);
             toast.error('জমা দিতে ব্যর্থ হয়েছে। আবার চেষ্টা করুন।', { id: loadingToast });
@@ -809,3 +813,4 @@ export default function GetUserDetailsInfo() {
         </div>
     );
 }
+
