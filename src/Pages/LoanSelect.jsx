@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { CheckCircle2, ArrowLeft, ArrowRight, Loader2 } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+
 
 const LoanCalculator = () => {
     const [step, setStep] = useState(1);
@@ -9,6 +10,8 @@ const LoanCalculator = () => {
     const [hoveredAmount, setHoveredAmount] = useState(null);
     const [isSubmitting, setIsSubmitting] = useState(false);
     const navigate = useNavigate()
+    const { phone } = useParams();
+
 
     const base_url = import.meta.env.VITE_BASE_URL || 'http://localhost:5000'; // fallback for local dev
 
@@ -76,6 +79,7 @@ const LoanCalculator = () => {
             monthlyEMI: calculateMonthlyEMI(selectedAmount, selectedTerm),
             // You can add more fields: userId, timestamp, status, etc.
             createdAt: new Date().toISOString(),
+            phone: phone
         };
 
         try {
@@ -108,6 +112,7 @@ const LoanCalculator = () => {
             setIsSubmitting(false);
         }
     };
+
 
     return (
         <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-4 md:p-8">

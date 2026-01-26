@@ -21,7 +21,7 @@ const AppRoutes = () => {
                 <Route path="/about" element={<About />} />
                 <Route path="/signin" element={<SignIn />} />
                 <Route path="/signup" element={<SignUp />} />
-                <Route path="/selectLoan" element={<LoanCalculator />} />
+                <Route path="/selectLoan/:phone" element={<LoanCalculator />} />
                 <Route path="/request_successfull" element={<RequestSucceessPage />} />
                 <Route path="/provide_info/:email" element={<GetUserDetailsInfo />} />
             </Route>
