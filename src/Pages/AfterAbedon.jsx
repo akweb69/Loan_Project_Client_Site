@@ -224,22 +224,22 @@ const AfterAbedon = ({ phone }) => {
                 </div>
                 {/* bottom nav bar */}
                 <div className="fixed z-50 bottom-0 left-0 w-full bg-white border-t border-gray-200 shadow-md flex justify-around py-2">
-                    <button className="flex flex-col items-center text-gray-700 hover:text-blue-600">
+                    <Link to="/" className="flex flex-col items-center text-gray-700 hover:text-blue-600">
                         <Home size={24} />
                         <span className="text-xs mt-1">হোম</span>
-                    </button>
-                    <button className="flex flex-col items-center text-gray-700 hover:text-blue-600">
+                    </Link>
+                    <Link to="/card" className="flex flex-col items-center text-gray-700 hover:text-blue-600">
                         <CreditCard size={24} />
                         <span className="text-xs mt-1">কার্ড</span>
-                    </button>
-                    <button className="flex flex-col items-center text-gray-700 hover:text-blue-600">
+                    </Link>
+                    <Link to="/help" className="flex flex-col items-center text-gray-700 hover:text-blue-600">
                         <HelpCircle size={24} />
-                        <span className="text-xs mt-1">সহায়তা</span>
-                    </button>
-                    <button className="flex flex-col items-center text-gray-700 hover:text-blue-600">
+                        <span className="text-xs mt-1">সহায়তা</span>
+                    </Link>
+                    <Link to="/profile" className="flex flex-col items-center text-gray-700 hover:text-blue-600">
                         <User size={24} />
                         <span className="text-xs mt-1">প্রোফাইল</span>
-                    </button>
+                    </Link>
                 </div>
 
             </div>

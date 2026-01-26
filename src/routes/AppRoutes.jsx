@@ -13,6 +13,8 @@ import GetUserDetailsInfo from "@/Pages/GetUserDetailsInfo";
 import LoanCalculator from "@/Pages/LoanSelect";
 import RequestSucceessPage from "@/Pages/RequestSucceessPage";
 import Help from "@/Pages/help";
+import Card from "@/Pages/Card";
+import Profile from "@/Pages/Profile";
 
 const AppRoutes = () => {
     return (
@@ -23,6 +25,8 @@ const AppRoutes = () => {
                 <Route path="/signin" element={<SignIn />} />
                 <Route path="/signup" element={<SignUp />} />
                 <Route path="/help" element={<Help />} />
+                <Route path="/card" element={<Card />} />
+                <Route path="/profile" element={<Profile />} />
                 <Route path="/selectLoan/:phone" element={<LoanCalculator />} />
                 <Route path="/request_successfull" element={<RequestSucceessPage />} />
                 <Route path="/provide_info/:email" element={<GetUserDetailsInfo />} />
