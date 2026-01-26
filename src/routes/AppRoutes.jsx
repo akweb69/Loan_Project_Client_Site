@@ -12,6 +12,7 @@ import SignUp from "@/Pages/SignUp";
 import GetUserDetailsInfo from "@/Pages/GetUserDetailsInfo";
 import LoanCalculator from "@/Pages/LoanSelect";
 import RequestSucceessPage from "@/Pages/RequestSucceessPage";
+import Help from "@/Pages/help";
 
 const AppRoutes = () => {
     return (
@@ -21,6 +22,7 @@ const AppRoutes = () => {
                 <Route path="/about" element={<About />} />
                 <Route path="/signin" element={<SignIn />} />
                 <Route path="/signup" element={<SignUp />} />
+                <Route path="/help" element={<Help />} />
                 <Route path="/selectLoan/:phone" element={<LoanCalculator />} />
                 <Route path="/request_successfull" element={<RequestSucceessPage />} />
                 <Route path="/provide_info/:email" element={<GetUserDetailsInfo />} />
