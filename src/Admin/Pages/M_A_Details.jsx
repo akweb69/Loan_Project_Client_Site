@@ -4,10 +4,10 @@ import { motion } from 'framer-motion';
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
-const M_A_Details = () => {
+const M_A_Details = ({ phone1 }) => {
     const { phone } = useParams();
     const navigate = useNavigate();
-
+    const finalPhone = phone1 || phone;
     const [details, setDetails] = useState({});
     const [loading, setLoading] = useState(true);
 
@@ -16,7 +16,7 @@ const M_A_Details = () => {
     const loadData = async () => {
         try {
             setLoading(true);
-            const res = await axios.get(`${base_url}/all_data/${phone}`);
+            const res = await axios.get(`${base_url}/all_data/${finalPhone}`);
             setDetails(res.data || {});
         } catch (error) {
             console.error(error);
