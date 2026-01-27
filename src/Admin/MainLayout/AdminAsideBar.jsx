@@ -8,21 +8,23 @@ import {
     LogOut,
     ChevronLeft,
     ChevronRight,
-    Menu
+    Menu,
+    FileUser
 } from 'lucide-react'; // ← or use any icon library you prefer
 
 import './AdminAsideBar.css'; // we'll create this next
+import { Link } from 'react-router-dom';
 
 const AdminAsideBar = () => {
     const [isCollapsed, setIsCollapsed] = useState(false);
     const [isMobileOpen, setIsMobileOpen] = useState(false);
 
     const menuItems = [
-        { icon: LayoutDashboard, label: 'Dashboard', href: '/admin' },
-        { icon: Users, label: 'Users', href: '/admin/users' },
-        { icon: ShoppingBag, label: 'Orders', href: '/admin/orders' },
-        { icon: Package, label: 'Products', href: '/admin/products' },
-        { icon: Settings, label: 'Settings', href: '/admin/settings' },
+        { icon: LayoutDashboard, label: 'ডাশবোর্ড', href: '/admin' },
+        { icon: FileUser, label: 'আবেদন সমূহ', href: '/admin/abedon_request' },
+        // { icon: ShoppingBag, label: 'Orders', href: '/admin/orders' },
+        // { icon: Package, label: 'Products', href: '/admin/products' },
+        // { icon: Settings, label: 'Settings', href: '/admin/settings' },
     ];
 
     const toggleSidebar = () => setIsCollapsed(!isCollapsed);
@@ -75,8 +77,8 @@ const AdminAsideBar = () => {
                     <ul className="space-y-1">
                         {menuItems.map((item, index) => (
                             <li key={index}>
-                                <a
-                                    href={item.href}
+                                <Link
+                                    to={item.href}
                                     className={`
                     flex items-center gap-3 px-3 py-3 rounded-lg
                     hover:bg-gray-800 transition-colors
@@ -85,7 +87,7 @@ const AdminAsideBar = () => {
                                 >
                                     <item.icon size={22} />
                                     {!isCollapsed && <span>{item.label}</span>}
-                                </a>
+                                </Link>
                             </li>
                         ))}
                     </ul>

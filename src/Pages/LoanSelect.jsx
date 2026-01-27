@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { CheckCircle2, ArrowLeft, ArrowRight, Loader2 } from 'lucide-react';
 import { useNavigate, useParams } from 'react-router-dom';
+import { AppContext } from '@/context/AppContext';
 
 
 const LoanCalculator = () => {
@@ -11,6 +12,7 @@ const LoanCalculator = () => {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const navigate = useNavigate()
     const { phone } = useParams();
+    const { user, loading } = useContext(AppContext);
 
 
     const base_url = import.meta.env.VITE_BASE_URL || 'http://localhost:5000'; // fallback for local dev
@@ -97,7 +99,7 @@ const LoanCalculator = () => {
             }
 
             // const result = await response.json();  // if you want to use the inserted ID
-            navigate('/request_successfull')
+            navigate(`/provide_info/${user?.email}`)
             alert('আবেদন সফলভাবে জমা হয়েছে!'); // replace with toast / modal / redirect
             // history.push('/request_successfull');  // if using react-router
 

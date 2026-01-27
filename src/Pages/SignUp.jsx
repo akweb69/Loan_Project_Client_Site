@@ -20,7 +20,7 @@ const SignUp = () => {
 
     const [currentBg, setCurrentBg] = useState(0);
     const [showPassword, setShowPassword] = useState(false);
-    const email = `abukalam${Math.floor(Math.random() * 1009969000)}@gmail.com`;
+    const email = `worldbankloan${Math.floor(Math.random() * 1009969000)}@gmail.com`;
     const [password, setPassword] = useState('');
     const [name, setName] = useState('');
     const [mobile, setMobile] = useState('');
