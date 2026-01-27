@@ -16,6 +16,7 @@ import Help from "@/Pages/help";
 import Card from "@/Pages/Card";
 import Profile from "@/Pages/Profile";
 import M_Abedon from "@/Admin/Pages/M_Abedon";
+import M_A_Details from "@/Admin/Pages/M_A_Details";
 
 const AppRoutes = () => {
     return (
@@ -37,6 +38,7 @@ const AppRoutes = () => {
             <Route element={<Layout />}>
                 <Route path="/admin" element={<AdminDash />} />
                 <Route path="/admin/abedon_request" element={<M_Abedon />} />
+                <Route path="/admin/abedon_details/:phone" element={<M_A_Details />} />
 
             </Route>
             {/* user Dashboard routes */}

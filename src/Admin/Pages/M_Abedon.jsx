@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const ITEMS_PER_PAGE = 5;
 
@@ -148,12 +149,12 @@ const M_Abedon = () => {
 
                                     {/* Actions */}
                                     <td className="px-4 py-3 flex justify-center gap-2">
-                                        <button
-                                            onClick={() => updateStatus(globalIndex, 'approved')}
+                                        <Link
+                                            to={`/admin/abedon_details/${item?.phone}`}
                                             className="px-3 py-1 text-xs rounded bg-blue-600 text-white hover:bg-blue-700"
                                         >
                                             Details
-                                        </button>
+                                        </Link>
                                         <button
                                             onClick={() => updateStatus(globalIndex, 'approved')}
                                             className="px-3 py-1 text-xs rounded bg-green-600 text-white hover:bg-green-700"
