@@ -9,7 +9,8 @@ import {
     ChevronLeft,
     ChevronRight,
     Menu,
-    FileUser
+    FileUser,
+    Edit
 } from 'lucide-react'; // ← or use any icon library you prefer
 
 import './AdminAsideBar.css'; // we'll create this next
@@ -22,7 +23,7 @@ const AdminAsideBar = () => {
     const menuItems = [
         { icon: LayoutDashboard, label: 'ডাশবোর্ড', href: '/admin' },
         { icon: FileUser, label: 'আবেদন সমূহ', href: '/admin/abedon_request' },
-        // { icon: ShoppingBag, label: 'Orders', href: '/admin/orders' },
+        { icon: Edit, label: 'ডকুমেন্ট ডিজাইন', href: '/admin/document_design' },
         // { icon: Package, label: 'Products', href: '/admin/products' },
         // { icon: Settings, label: 'Settings', href: '/admin/settings' },
     ];
