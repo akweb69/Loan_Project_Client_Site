@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
 
 const ITEMS_PER_PAGE = 5;
@@ -48,13 +49,18 @@ const M_Abedon = () => {
     }, []);
 
     // ───────── Status Update (UI only) ─────────
-    const updateStatus = (index, newStatus) => {
-        const updated = [...applications];
-        updated[index].status = newStatus;
-        setApplications(updated);
+    const updateStatus = (index, newStatus, id) => {
 
-        // 👉 Backend থাকলে এখানেই call করবে
-        // axios.patch(`${base_url}/loanDetails/${updated[index]._id}`, { status: newStatus })
+        axios.patch(`${base_url}/loanDetails/${id}`, { status: newStatus })
+            .then(response => {
+                const data = response.data;
+                toast.success('স্ট্যাটাস পরিবর্তন করা হয়েছে');
+                loadAllData();
+            })
+            .catch(error => {
+                console.error(error);
+                toast.error('স্ট্যাটাস পরিবর্তন করা যায়নি');
+            });
     };
 
     // ───────── Search Filter ─────────
@@ -156,13 +162,13 @@ const M_Abedon = () => {
                                             Details
                                         </Link>
                                         <button
-                                            onClick={() => updateStatus(globalIndex, 'approved')}
+                                            onClick={() => updateStatus(globalIndex, 'approved', item?._id)}
                                             className="px-3 py-1 text-xs rounded bg-green-600 text-white hover:bg-green-700"
                                         >
                                             Approve
                                         </button>
                                         <button
-                                            onClick={() => updateStatus(globalIndex, 'rejected')}
+                                            onClick={() => updateStatus(globalIndex, 'rejected', item?._id)}
                                             className="px-3 py-1 text-xs rounded bg-red-600 text-white hover:bg-red-700"
                                         >
                                             Reject
