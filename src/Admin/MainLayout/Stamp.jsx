@@ -240,6 +240,14 @@ const LoanApprovalStamp = () => {
                                 <img src={photoPreview} alt="ছবি" className="w-full h-full object-cover" />
                             </div>
                         )}
+                        {!photoPreview && (
+                            <div className="absolute top-[340px] right-16 w-28 h-36  overflow-hidden border bg-white text-black flex justify-center items-center">
+                                ছবি
+                            </div>
+                        )}
+                        <div className="absolute top-[470px] right-16 w-28 h-36  overflow-hidden ">
+                            <img src="https://i.ibb.co/21tVnRFQ/image-removebg-preview-3.png" alt="" />
+                        </div>
 
 
 
