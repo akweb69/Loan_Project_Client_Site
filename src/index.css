@@ -121,3 +121,7 @@
     @apply bg-background text-foreground;
   }
 }
+
+.signFont {
+  font-family: "Qwitcher Grypen", cursive;
+}

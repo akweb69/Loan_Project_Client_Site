@@ -11,9 +11,11 @@ import {
     ArrowRight,
     Sparkles,
 } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 const DocDesignHome = () => {
     const [hoveredIndex, setHoveredIndex] = useState(null);
+    const navigate = useNavigate()
 
     const services = [
         {
@@ -23,6 +25,7 @@ const DocDesignHome = () => {
             color: "from-blue-500 to-blue-700",
             hover: "hover:shadow-blue-200/60 hover:border-blue-200",
             bgGlow: "bg-blue-500/10",
+            togo: "/admin/document_design/transaction",
         },
         {
             title: "ID Card",
@@ -31,6 +34,7 @@ const DocDesignHome = () => {
             color: "from-emerald-500 to-emerald-700",
             hover: "hover:shadow-emerald-200/60 hover:border-emerald-200",
             bgGlow: "bg-emerald-500/10",
+            togo: "/admin/document_design/id_card",
         },
         {
             title: "Insurance",
@@ -39,6 +43,7 @@ const DocDesignHome = () => {
             color: "from-indigo-500 to-indigo-700",
             hover: "hover:shadow-indigo-200/60 hover:border-indigo-200",
             bgGlow: "bg-indigo-500/10",
+            togo: "/admin/document_design/insurance",
         },
         {
             title: "Stamp",
@@ -47,6 +52,7 @@ const DocDesignHome = () => {
             color: "from-amber-500 to-amber-700",
             hover: "hover:shadow-amber-200/60 hover:border-amber-200",
             bgGlow: "bg-amber-500/10",
+            togo: "/admin/document_design/stamp",
         },
         {
             title: "Cheque",
@@ -55,6 +61,7 @@ const DocDesignHome = () => {
             color: "from-rose-500 to-rose-700",
             hover: "hover:shadow-rose-200/60 hover:border-rose-200",
             bgGlow: "bg-rose-500/10",
+            togo: "/admin/document_design/cheque",
         },
         {
             title: "Money Receipt",
@@ -63,6 +70,7 @@ const DocDesignHome = () => {
             color: "from-cyan-500 to-cyan-700",
             hover: "hover:shadow-cyan-200/60 hover:border-cyan-200",
             bgGlow: "bg-cyan-500/10",
+            togo: "/admin/document_design/money_receipt",
         },
         {
             title: "Approval",
@@ -71,6 +79,7 @@ const DocDesignHome = () => {
             color: "from-green-500 to-green-700",
             hover: "hover:shadow-green-200/60 hover:border-green-200",
             bgGlow: "bg-green-500/10",
+            togo: "/admin/document_design/approval",
         },
     ];
 
@@ -164,6 +173,7 @@ const DocDesignHome = () => {
                 >
                     {services.map((item, index) => (
                         <motion.div
+                            onClick={() => navigate(item.togo)}
                             key={index}
                             variants={itemVariants}
                             whileHover={{ y: -8, scale: 1.02 }}
@@ -178,9 +188,7 @@ const DocDesignHome = () => {
               `}
                             role="button"
                             tabIndex={0}
-                            onClick={() => {
-                                console.log(`Opening ${item.title} generator`);
-                            }}
+
                         >
                             {/* Animated gradient bar */}
                             <motion.div

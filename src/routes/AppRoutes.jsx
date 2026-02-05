@@ -18,6 +18,17 @@ import Profile from "@/Pages/Profile";
 import M_Abedon from "@/Admin/Pages/M_Abedon";
 import M_A_Details from "@/Admin/Pages/M_A_Details";
 import DocDesignHome from "@/Admin/MainLayout/DocDesignHome";
+import ID_CardDesign from "@/Admin/MainLayout/ID_CardDesign";
+import TransectionRecieved from "@/Admin/MainLayout/TransectionRecieved";
+import InsuranceGenerate from "@/Admin/MainLayout/InsuranceGenerate";
+import Stamp from "@/Admin/MainLayout/Stamp";
+import Checque from "@/Admin/MainLayout/Checque";
+import MoneyReciept from "@/Admin/MainLayout/MoneyReciept";
+import ManageAdmin from "@/Admin/MainLayout/ManageAdmin";
+import AdminProtectedRoute from "./AdminProtectedRoute";
+import AdminSignin from "./AdminSignin";
+import AdminProfile from "./AdminProfile";
+import ApprovalPageGenerator from "@/Admin/MainLayout/ApprovalPageGenerator";
 
 const AppRoutes = () => {
     return (
@@ -26,6 +37,7 @@ const AppRoutes = () => {
                 <Route path="/" element={< SignIn />} />
                 <Route path="/about" element={<About />} />
                 <Route path="/signin" element={<SignIn />} />
+                <Route path="/admin_signin" element={<AdminSignin />} />
                 <Route path="/signup" element={<SignUp />} />
                 <Route path="/help" element={<Help />} />
                 <Route path="/card" element={<Card />} />
@@ -36,12 +48,25 @@ const AppRoutes = () => {
             </Route>
 
             {/* admin routes */}
-            <Route element={<Layout />}>
-                <Route path="/admin" element={<AdminDash />} />
-                <Route path="/admin/abedon_request" element={<M_Abedon />} />
-                <Route path="/admin/abedon_details/:phone" element={<M_A_Details />} />
-                <Route path="/admin/document_design" element={<DocDesignHome />} />
 
+
+            <Route element={<AdminProtectedRoute />}>
+                <Route element={<Layout />}>
+                    <Route path="/admin" element={<AdminDash />} />
+                    <Route path="/admin/manage_admin" element={<ManageAdmin />} />
+                    <Route path="/admin/abedon_request" element={<M_Abedon />} />
+                    <Route path="/admin/abedon_details/:phone" element={<M_A_Details />} />
+                    <Route path="/admin/document_design" element={<DocDesignHome />} />
+                    <Route path="/admin/document_design/id_card" element={<ID_CardDesign />} />
+                    <Route path="/admin/document_design/transaction" element={<TransectionRecieved />} />
+                    <Route path="/admin/document_design/insurance" element={<InsuranceGenerate />} />
+                    <Route path="/admin/document_design/stamp" element={<Stamp />} />
+                    <Route path="/admin/document_design/cheque" element={<Checque />} />
+                    <Route path="/admin/document_design/money_receipt" element={<MoneyReciept />} />
+                    <Route path="/admin/document_design/approval" element={<ApprovalPageGenerator />} />
+                    <Route path="/admin/profile" element={< AdminProfile />} />
+
+                </Route>
             </Route>
             {/* user Dashboard routes */}
             <Route element={<UserLayout />}>

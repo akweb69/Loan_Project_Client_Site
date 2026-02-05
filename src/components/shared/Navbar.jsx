@@ -1,6 +1,6 @@
 // components/Navbar.tsx
 import { useContext, useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import {
@@ -15,6 +15,7 @@ import {
     LogOut,
 } from "lucide-react";
 import { AppContext } from "@/context/AppContext";
+import toast from "react-hot-toast";
 
 const navItems = [
     // { name: "Home", path: "/", icon: Home },
@@ -24,7 +25,14 @@ const navItems = [
 
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
-    const { user, loading, logout } = useContext(AppContext); // assuming you have logout in context
+    const { user, loading, logout } = useContext(AppContext);
+    const navigate = useNavigate();
+    const handleLogout = async () => {
+        await logout();
+        toast.success("Logout successful");
+        navigate("/");
+
+    };
 
     return (
         <header className="sticky top-0 z-50 w-full border-b bg-background/80 backdrop-blur-xl supports-[backdrop-filter]:bg-background/60">
@@ -117,7 +125,7 @@ export default function Navbar() {
                                     <Button
                                         variant="ghost"
                                         size="sm"
-                                        onClick={logout}
+                                        onClick={handleLogout}
                                         className="text-red-500 hover:text-red-600 hover:bg-red-500/10"
                                     >
                                         <LogOut className="h-4 w-4 mr-1" />

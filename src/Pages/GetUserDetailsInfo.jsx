@@ -16,7 +16,7 @@ export default function GetUserDetailsInfo() {
     const [selectedStep, setSelectedStep] = useState(1);
     const [isSubmitting, setIsSubmitting] = useState(false);
     // check user to submit information or not---------->
-    const [canSubmit, setCanSubmit] = useState(false);
+    const [canSubmit, setCanSubmit] = useState(null);
     const [uiLoading, setUiLoading] = useState(false);
     // Form state
     const [formData, setFormData] = useState({
@@ -43,32 +43,44 @@ export default function GetUserDetailsInfo() {
 
 
     const getDbmobile = async () => {
-        setUiLoading(true);
-        const email = await user?.email;
-        const res = await axios.get(`${base_url}/user/${email}`);
-        setDbMobile(res.data.mobile);
-        if (res.data.mobile) {
-            // check user submit or not
-            const userMobile = res.data.mobile;
-            const res2 = axios.get(`${base_url}/checkUserToSubmit/${userMobile}`);
-            res2.then(data => {
-                if (data.data.length > 0) {
+        if (!user?.email) return;
+
+        try {
+            setUiLoading(true);
+
+            const res = await axios.get(`${base_url}/user/${user.email}`);
+            setDbMobile(res.data.mobile);
+
+            if (res.data.mobile) {
+                const res2 = await axios.get(
+                    `${base_url}/checkUserToSubmit/${res.data.mobile}`
+                );
+
+                if (res2.data.length > 0) {
                     setCanSubmit(true);
-                    setUiLoading(false);
                 }
-            })
+            }
+        } catch (err) {
+            console.error(err);
+            toast.error("ডাটা লোড করতে সমস্যা হয়েছে");
+        } finally {
+            setUiLoading(false);
         }
-        setUiLoading(false);
-    }
+    };
+
     useEffect(() => {
-        getDbmobile();
-    }, [user]);
+        if (!loading && user?.email) {
+            getDbmobile();
+        }
+    }, [loading, user?.email]);
+
+
 
     // check loading state
     if (loading || uiLoading) {
         return (
-            <div className="flex items-center justify-center h-screen">
-                <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-gray-900"></div>
+            <div className="min-h-screen flex items-center justify-center">
+                <div className="animate-spin h-10 w-10 border-4 border-blue-500 border-t-transparent rounded-full" />
             </div>
         );
     }
@@ -291,6 +303,7 @@ export default function GetUserDetailsInfo() {
             setIsSubmitting(false);
         }
     };
+
 
     return (
         <div className="w-full min-h-screen bg-emerald-50">

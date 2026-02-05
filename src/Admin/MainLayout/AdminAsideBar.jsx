@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import {
     LayoutDashboard,
     Users,
@@ -10,26 +10,42 @@ import {
     ChevronRight,
     Menu,
     FileUser,
-    Edit
+    Edit,
+    Shield,
+    User
 } from 'lucide-react'; // ← or use any icon library you prefer
 
 import './AdminAsideBar.css'; // we'll create this next
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { AppContext } from '@/context/AppContext';
+import toast from 'react-hot-toast';
 
 const AdminAsideBar = () => {
     const [isCollapsed, setIsCollapsed] = useState(false);
     const [isMobileOpen, setIsMobileOpen] = useState(false);
+    const { logout } = useContext(AppContext);
+    const navigate = useNavigate();
 
     const menuItems = [
         { icon: LayoutDashboard, label: 'ডাশবোর্ড', href: '/admin' },
         { icon: FileUser, label: 'আবেদন সমূহ', href: '/admin/abedon_request' },
         { icon: Edit, label: 'ডকুমেন্ট ডিজাইন', href: '/admin/document_design' },
+        { icon: Shield, label: 'মানেজ এডমিন', href: '/admin/manage_admin' },
         // { icon: Package, label: 'Products', href: '/admin/products' },
-        // { icon: Settings, label: 'Settings', href: '/admin/settings' },
+        // { icon: Settings, label: "সেটিংস", href: '/admin/settings' },
+        { icon: User, label: "প্রোফাইল", href: '/admin/profile' },
+
     ];
 
     const toggleSidebar = () => setIsCollapsed(!isCollapsed);
     const toggleMobile = () => setIsMobileOpen(!isMobileOpen);
+
+
+    const handleLogout = async () => {
+        await logout();
+        toast.success('Logout successful');
+        navigate('/admin_signin');
+    };
 
     return (
         <>
@@ -96,8 +112,8 @@ const AdminAsideBar = () => {
 
                 {/* Footer / Logout */}
                 <div className="p-4 border-t border-gray-800">
-                    <a
-                        href="/logout"
+                    <button
+                        onClick={handleLogout}
                         className={`
               flex items-center gap-3 px-3 py-3 rounded-lg
               hover:bg-red-900/30 text-red-400 transition-colors
@@ -106,7 +122,7 @@ const AdminAsideBar = () => {
                     >
                         <LogOut size={22} />
                         {!isCollapsed && <span>Logout</span>}
-                    </a>
+                    </button>
                 </div>
             </aside>
 
