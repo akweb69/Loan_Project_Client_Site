@@ -30,10 +30,10 @@ const AdminAsideBar = () => {
         { icon: LayoutDashboard, label: 'ডাশবোর্ড', href: '/admin' },
         { icon: FileUser, label: 'আবেদন সমূহ', href: '/admin/abedon_request' },
         { icon: Edit, label: 'ডকুমেন্ট ডিজাইন', href: '/admin/document_design' },
-        { icon: Shield, label: 'মানেজ এডমিন', href: '/admin/manage_admin' },
-        // { icon: Package, label: 'Products', href: '/admin/products' },
+        { icon: Shield, label: 'এডমিন ম্যানেজমেন্ট', href: '/admin/manage_admin' },
+        { icon: Package, label: 'ম্যাসেজ ম্যানেজমেন্ট', href: '/admin/massages' },
         // { icon: Settings, label: "সেটিংস", href: '/admin/settings' },
-        { icon: User, label: "প্রোফাইল", href: '/admin/profile' },
+        { icon: User, label: "প্রোফাইল ম্যানেজমেন্ট", href: '/admin/profile' },
 
     ];
 

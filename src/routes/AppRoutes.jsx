@@ -29,6 +29,7 @@ import AdminProtectedRoute from "./AdminProtectedRoute";
 import AdminSignin from "./AdminSignin";
 import AdminProfile from "./AdminProfile";
 import ApprovalPageGenerator from "@/Admin/MainLayout/ApprovalPageGenerator";
+import ManageMassage from "@/Admin/MainLayout/ManageMassage";
 
 const AppRoutes = () => {
     return (
@@ -65,6 +66,7 @@ const AppRoutes = () => {
                     <Route path="/admin/document_design/money_receipt" element={<MoneyReciept />} />
                     <Route path="/admin/document_design/approval" element={<ApprovalPageGenerator />} />
                     <Route path="/admin/profile" element={< AdminProfile />} />
+                    <Route path="/admin/massages" element={< ManageMassage />} />
 
                 </Route>
             </Route>
