@@ -31,7 +31,7 @@ const LoanCalculator = () => {
         1300000, 1400000, 1500000, 1600000, 1700000, 1800000, 1900000, 2000000,
     ];
 
-    const interestRate = 8;       // flat interest rate per year (%)
+    const interestRate = 2.4;       // flat interest rate per year (%)
     const processingFee = 480;
 
     // Flat rate interest calculation (common in some personal/micro loans in BD)

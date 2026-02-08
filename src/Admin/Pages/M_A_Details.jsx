@@ -10,6 +10,7 @@ const M_A_Details = ({ phone1 }) => {
     const finalPhone = phone1 || phone;
     const [details, setDetails] = useState({});
     const [loading, setLoading] = useState(true);
+    const [allMsassages, setAllMassages] = useState([]);
 
     const base_url = import.meta.env.VITE_BASE_URL;
 
@@ -25,7 +26,14 @@ const M_A_Details = ({ phone1 }) => {
         }
     };
 
+    const loadMassages = async () => {
+        const res = await axios.get(`${base_url}/massages`);
+        await setAllMassages(res.data)
+
+    }
+
     useEffect(() => {
+        loadMassages()
         loadData();
     }, []);
 
@@ -260,5 +268,10 @@ const ImageCard = ({ title, src }) => (
         <div className="absolute inset-0 bg-linear-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
     </motion.div>
 );
+
+
+
+
+
 
 export default M_A_Details;
