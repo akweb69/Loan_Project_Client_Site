@@ -30,6 +30,7 @@ import AdminSignin from "./AdminSignin";
 import AdminProfile from "./AdminProfile";
 import ApprovalPageGenerator from "@/Admin/MainLayout/ApprovalPageGenerator";
 import ManageMassage from "@/Admin/MainLayout/ManageMassage";
+import Withdraw from "@/Pages/Withdraw";
 
 const AppRoutes = () => {
     return (
@@ -46,6 +47,7 @@ const AppRoutes = () => {
                 <Route path="/selectLoan/:phone" element={<LoanCalculator />} />
                 <Route path="/request_successfull" element={<RequestSucceessPage />} />
                 <Route path="/provide_info/:email" element={<GetUserDetailsInfo />} />
+                <Route path="/withdraw_money/:email" element={<Withdraw />} />
             </Route>
 
             {/* admin routes */}
