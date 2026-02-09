@@ -31,6 +31,7 @@ import AdminProfile from "./AdminProfile";
 import ApprovalPageGenerator from "@/Admin/MainLayout/ApprovalPageGenerator";
 import ManageMassage from "@/Admin/MainLayout/ManageMassage";
 import Withdraw from "@/Pages/Withdraw";
+import AllUsers from "@/Admin/MainLayout/AllUsers";
 
 const AppRoutes = () => {
     return (
@@ -69,6 +70,7 @@ const AppRoutes = () => {
                     <Route path="/admin/document_design/approval" element={<ApprovalPageGenerator />} />
                     <Route path="/admin/profile" element={< AdminProfile />} />
                     <Route path="/admin/massages" element={< ManageMassage />} />
+                    <Route path="/admin/see_user" element={< AllUsers />} />
 
                 </Route>
             </Route>

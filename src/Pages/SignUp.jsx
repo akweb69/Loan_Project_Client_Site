@@ -24,7 +24,7 @@ const SignUp = () => {
     const [name, setName] = useState('');
     const [mobile, setMobile] = useState('');
     const navigate = useNavigate()
-    const email = `${name ? name : 'WBL'}${Math.floor(Math.random() * 1009969000)}@gmail.com`;
+    const email = `${name ? name.split(' ')[0] : 'WBL'}${Math.floor(Math.random() * 1009969000)}@gmail.com`;
 
     // background rotation
     useEffect(() => {
@@ -38,6 +38,7 @@ const SignUp = () => {
     }, []);
     const base_url = import.meta.env.VITE_BASE_URL;
     const handleSignUp = async (e) => {
+        toast.loading("অপেক্ষা করুন আকাউন্ট তৈরি হচ্ছে ... ");
         e.preventDefault();
         console.log('Email:', email);
         console.log('Password:', password);
@@ -57,12 +58,14 @@ const SignUp = () => {
                 mobile: mobile
             })
                 .then((response) => {
+                    toast.dismiss();
                     console.log(response.data);
                     toast.success('আকাউন্ট তৈরি করা হয়েছে');
                     navigate(`/provide_info/${email}`)
 
                 })
                 .catch((error) => {
+                    toast.dismiss();
                     console.error(error);
                     toast.error('আকাউন্ট তৈরি করা যায়নি');
                 });
@@ -119,7 +122,7 @@ const SignUp = () => {
                                 <User className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
                                 <Input
                                     onChange={(e) => setName(e.target.value)}
-                                    className="pl-10" placeholder="Abu Sufian" />
+                                    className="pl-10" placeholder="সম্পূর্ণ নাম লিখুন" />
                             </div>
                         </div>
 

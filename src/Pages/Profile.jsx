@@ -7,8 +7,8 @@ import {
     Edit, LogOut, FileText, CreditCard, Clock,
     Settings, Bell, ChevronRight, CheckCircle
 } from 'lucide-react';
-import M_A_Details from '@/Admin/Pages/M_A_Details';
 import { motion } from 'framer-motion';
+import UserAbedonDetails from '@/Admin/Pages/UserAbedonDetails';
 
 const Profile = () => {
     const { user, loading, logout } = useContext(AppContext);
@@ -171,11 +171,11 @@ const Profile = () => {
                         </section>
 
                         {/* Stats */}
-                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                        {/* <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                             <StatCard icon={FileText} label="মোট আবেদন" value="০" />
                             <StatCard icon={CreditCard} label="সক্রিয় ঋণ" value="০" />
                             <StatCard icon={CreditCard} label="পরিশোধিত" value="৳ ০" />
-                        </div>
+                        </div> */}
 
                         {/* Loan Applications */}
                         <section className="bg-white rounded-xl border border-gray-200 overflow-hidden">
@@ -188,7 +188,7 @@ const Profile = () => {
 
                             <div className="p-6">
                                 {userPhone ? (
-                                    <M_A_Details phone1={userPhone} />
+                                    <UserAbedonDetails phone1={userPhone} />
                                 ) : (
                                     <div className="py-12 text-center">
                                         <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">

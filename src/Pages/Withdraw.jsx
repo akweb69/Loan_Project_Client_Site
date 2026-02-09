@@ -17,6 +17,7 @@ const Withdraw = () => {
 
     const [imgUrl, setImgUrl] = useState("");
     const [imgUploading, setImgUploading] = useState(false);
+    const [allMassages, setAllMassages] = useState([])
 
     /* ================= LOAD USER DATA ================= */
     const loadData = async () => {
@@ -27,6 +28,7 @@ const Withdraw = () => {
             setUserFromDb(res.data);
 
             if (res?.data?.massages?.length > 0) {
+                setAllMassages(res?.data?.massages)
                 const index = res.data.massages.length - 1;
                 setShowMassageData(res.data.massages[index]);
             }
@@ -114,10 +116,19 @@ const Withdraw = () => {
 
                 {
                     !showMassage && <div className="">
-                        <p className="p-4 mt-4 shadow bg-yellow-100 rounded-lg">
-                            আপনার আবেদন সম্পূর্ণ হয়েছে, অনুগ্রহ করে কিছু সময় অপেক্ষা করুন। আপনার পেমেন্ট তথ্য যাচাই করার পরে আপনার ঋণ টি আপনার একাউন্টে পাঠানো হবে। যদি টাকা পেতে সমস্যা হয় তবে হেল্পলাইনে যোগাযোগ করুন।
 
-                        </p>
+                        {
+                            allMassages.length === 1 ? <div className="p-4 mt-4 shadow bg-yellow-100 rounded-lg">
+                                ওয়েট করেন কাজ চলিতেছে লোন পেতে বিলম্ব হলে যোগাযোগ করুন
+                            </div>
+                                :
+                                <p className="p-4 mt-4 shadow bg-yellow-100 rounded-lg">
+                                    আপনার আবেদন সম্পূর্ণ হয়েছে, অনুগ্রহ করে কিছু সময় অপেক্ষা করুন। আপনার পেমেন্ট তথ্য যাচাই করার পরে আপনার ঋণ টি আপনার একাউন্টে পাঠানো হবে। যদি টাকা পেতে সমস্যা হয় তবে হেল্পলাইনে যোগাযোগ করুন।
+
+                                </p>
+                        }
+
+
                     </div>
                 }
 
