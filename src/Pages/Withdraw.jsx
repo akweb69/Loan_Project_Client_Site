@@ -93,6 +93,8 @@ const Withdraw = () => {
         if (res.data) {
             toast.dismiss();
             toast.success("ডকুমেন্ট সফলভাবে যুক্ত করা হয়েছে");
+            window.location.reload();
+            setImgUrl("");
         }
         else {
             toast.dismiss();

@@ -1,6 +1,6 @@
 // AdminLayout.jsx
 import React, { useContext, useState } from 'react';
-import { Outlet, Link } from 'react-router-dom';
+import { Outlet, Link, useNavigate } from 'react-router-dom';
 import AdminAsideBar from './AdminAsideBar';
 import {
     Search,
@@ -14,6 +14,7 @@ import { AppContext } from '@/context/AppContext';
 import toast from 'react-hot-toast';
 
 const AdminLayout = () => {
+    const navigate = useNavigate();
     const [showUserMenu, setShowUserMenu] = useState(false);
     const { user, logout } = useContext(AppContext);
     const handlelogout = async () => {

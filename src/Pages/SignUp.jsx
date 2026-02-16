@@ -74,6 +74,7 @@ const SignUp = () => {
 
     }
 
+
     return (
         <div
             style={{

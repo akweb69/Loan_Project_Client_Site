@@ -83,7 +83,7 @@ const Footer = () => {
                     <ul className="space-y-3 text-sm text-gray-600">
                         <li>📍 ঢাকা, বাংলাদেশ</li>
                         <li>📞 ০১৭xxxxxxxx</li>
-                        <li>✉️ support@microloan.gov.bd</li>
+                        <li>✉️ onlineBannkingbd@gmail.com</li>
                         <li className="text-xs text-gray-500">
                             অফিস সময়: সকাল ৯টা – বিকাল ৫টা
                         </li>

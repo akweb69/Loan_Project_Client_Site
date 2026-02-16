@@ -1,9 +1,10 @@
 import axios from 'axios';
+import { Trash } from 'lucide-react';
 import React, { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
 
-const ITEMS_PER_PAGE = 5;
+const ITEMS_PER_PAGE = 10;
 
 const M_Abedon = () => {
     const base_url = import.meta.env.VITE_BASE_URL;
@@ -13,6 +14,7 @@ const M_Abedon = () => {
     const [loanMap, setLoanMap] = useState({});
     const [search, setSearch] = useState('');
     const [currentPage, setCurrentPage] = useState(1);
+
 
     // ───────── Load Data ─────────
     const loadAllData = async () => {
@@ -43,6 +45,21 @@ const M_Abedon = () => {
             setLoading(false);
         }
     };
+
+    // delete abedon functionality-------->
+    const deleteAbedon = async (id) => {
+        toast.loading('আবেদন ডিলিট করা হচ্ছে');
+        const res = await axios.delete(`${base_url}/abedon/${id}`);
+        if (res) {
+            toast.dismiss();
+            toast.success('আবেদন ডিলিট করা হয়েছে');
+            loadAllData();
+        }
+        else {
+            toast.dismiss();
+            toast.error('আবেদন ডিলিট করা যায়নি');
+        }
+    }
 
     useEffect(() => {
         loadAllData();
@@ -173,6 +190,14 @@ const M_Abedon = () => {
                                         >
                                             Reject
                                         </button>
+
+                                        <div className="ml-4">
+                                            <Trash
+                                                size={18}
+                                                className="text-red-600 cursor-pointer"
+                                                onClick={() => deleteAbedon(item?._id)}
+                                            />
+                                        </div>
                                     </td>
                                 </tr>
                             );

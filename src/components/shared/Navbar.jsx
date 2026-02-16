@@ -40,7 +40,7 @@ export default function Navbar() {
             <div className="w-11/12 mx-auto max-w-7xl">
                 <div className="flex h-16 items-center justify-between">
 
-                    {/* Logo */}
+                    {/* Logo -------> */}
                     <Link
                         to="/"
                         className="flex items-center gap-2.5 group"
@@ -51,7 +51,8 @@ export default function Navbar() {
                             transition={{ type: "spring", stiffness: 300, damping: 15 }}
                             className="text-2xl font-black bg-gradient-to-r from-violet-600 to-indigo-600 bg-clip-text text-transparent"
                         >
-                            Loan Project
+                            OnlineBanking
+
                         </motion.div>
                     </Link>
 

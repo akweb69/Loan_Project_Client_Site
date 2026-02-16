@@ -3,8 +3,17 @@ import axios from 'axios';
 import { motion } from 'framer-motion';
 import { Plus, Trash2, ShieldCheck, Loader } from 'lucide-react';
 import toast from 'react-hot-toast';
+import { AppContext } from '@/context/AppContext';
 
 const ManageAdmin = () => {
+
+    // ----------------main admin email ---------->
+    const mainAdminEmail = "digital961321856@gmail.com";
+    const { user, loading: userLoading } = React.useContext(AppContext);
+
+
+
+
     const base_url = import.meta.env.VITE_BASE_URL;
 
     const [admins, setAdmins] = useState([]);
@@ -29,11 +38,16 @@ const ManageAdmin = () => {
     }, []);
 
     const handleAddAdmin = async (e) => {
+        if (user?.email?.toLowerCase() !== mainAdminEmail.toLowerCase()) {
+            toast.error('You are not allowed to add admin only main admin can add admin');
+            return
+        }
+
         e.preventDefault();
         if (!email.trim()) return toast.error('Email is required');
 
         try {
-            await axios.post(`${base_url}/admin`, { email: email.trim(), role });
+            await axios.post(`${base_url}/admin`, { email: email.trim().toLowerCase(), role });
             toast.success('Admin added successfully');
             setEmail('');
             setRole('admin');
@@ -43,7 +57,17 @@ const ManageAdmin = () => {
         }
     };
 
-    const handleRoleChange = async (id, newRole) => {
+    const handleRoleChange = async (id, newRole, email) => {
+
+        if (user?.email?.toLowerCase() !== mainAdminEmail.toLowerCase()) {
+            toast.error('You are not allowed to change your role only main admin can change role');
+            return
+        }
+        if (mainAdminEmail === email) {
+            toast.error('You cannot change the role of the main admin');
+            return;
+        }
+
         try {
             await axios.patch(`${base_url}/admin/${id}`, { role: newRole });
             toast.success('Role updated');
@@ -53,7 +77,17 @@ const ManageAdmin = () => {
         }
     };
 
-    const handleDelete = async (id) => {
+    const handleDelete = async (id, email) => {
+
+        if (user?.email?.toLowerCase() !== mainAdminEmail.toLowerCase()) {
+            toast.error('You are not allowed to delete the admin only main admin can delete');
+            return
+        }
+
+        if (mainAdminEmail === email) {
+            toast.error('You cannot remove the main admin');
+            return;
+        }
         if (!window.confirm('Are you sure you want to remove this admin?')) return;
 
         try {
@@ -64,6 +98,13 @@ const ManageAdmin = () => {
             toast.error('Failed to delete admin');
         }
     };
+    if (loading || userLoading) {
+        return (
+            <div className="flex items-center justify-center h-screen">
+                <Loader className="animate-spin" size={32} />
+            </div>
+        );
+    }
 
     return (
         <div className="min-h-screen bg-gray-50/40 py-6 px-4 sm:px-6 lg:px-8">
@@ -163,7 +204,7 @@ const ManageAdmin = () => {
                                                 <select
                                                     value={admin.role}
                                                     onChange={(e) =>
-                                                        handleRoleChange(admin._id, e.target.value)
+                                                        handleRoleChange(admin._id, e.target.value, admin.email)
                                                     }
                                                     className="w-full max-w-[140px] border border-gray-300 rounded 
                                    px-3 py-1.5 bg-white focus:border-rose-500 
@@ -175,7 +216,7 @@ const ManageAdmin = () => {
                                             </td>
                                             <td className="px-5 py-3.5 text-right">
                                                 <button
-                                                    onClick={() => handleDelete(admin._id)}
+                                                    onClick={() => handleDelete(admin._id, admin.email)}
                                                     className="p-2 text-red-600 hover:text-red-700 
                                    hover:bg-red-50 rounded-lg transition-colors 
                                    active:scale-95 min-w-[44px] min-h-[44px]"
